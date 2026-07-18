@@ -10,12 +10,14 @@
             /* Dark Mode (Default) */
             --bg-main: #1e1e24;
             --bg-nav: #121215;
+            --card-bg: #25252c;
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
             --accent: #ffffff;
             --accent-hover: #9ca3af;
             --border-color: #3f3f46;
             --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             --image-bg: #2d2d35;
         }
 
@@ -23,12 +25,14 @@
             /* Light Mode */
             --bg-main: #f9fafb;
             --bg-nav: #ffffff;
+            --card-bg: #ffffff;
             --text-main: #1f2937;
             --text-muted: #4b5563;
             --accent: #111827;
             --accent-hover: #4b5563;
             --border-color: #e5e7eb;
             --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             --image-bg: #f3f4f6;
         }
 
@@ -45,7 +49,7 @@
             color: var(--text-main);
             line-height: 1.7;
             transition: background-color 0.3s ease, color 0.3s ease;
-            padding-bottom: 4rem; /* Added so content isn't hidden behind the footer */
+            padding-bottom: 4rem; 
         }
 
         /* --- Navigation Bar --- */
@@ -55,21 +59,32 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             border-bottom: 1px solid var(--border-color);
             transition: background-color 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+            white-space: nowrap;
         }
 
         .navbar ul {
             list-style: none;
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 2.5rem;
+            gap: 2rem;
             flex-wrap: wrap;
+            margin-left: auto;
         }
 
         .navbar a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 500;
             transition: color 0.2s ease, text-decoration 0.2s ease;
         }
@@ -83,21 +98,21 @@
             font-weight: 600;
         }
 
-        .theme-toggle-container {
-            margin-left: auto;
-        }
-
         #theme-toggle {
             background-color: var(--image-bg);
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.8rem; /* Slightly narrowed padding for just an emoji */
             border-radius: 20px;
-            font-size: 0.95rem;
+            font-size: 1.2rem; /* Made the emoji slightly larger */
+            margin-left: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* --- Main Layout --- */
         .container {
-            max-width: 1000px;
-            margin: 5rem auto;
+            max-width: 1050px;
+            margin: 4rem auto;
             padding: 0 2rem;
         }
 
@@ -120,17 +135,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 4rem;
+            gap: 5rem;
         }
 
         /* --- Content Styling --- */
         .content {
             flex: 1;
-            max-width: 550px;
+            max-width: 600px;
         }
 
         .content.full-width {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
         }
 
@@ -154,8 +169,20 @@
             color: var(--text-muted);
         }
 
-        .entry {
-            margin-bottom: 2.5rem;
+        /* --- Research Cards --- */
+        .entry.card {
+            background-color: var(--card-bg);
+            padding: 1.8rem 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .entry.card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
         }
 
         .entry h2 {
@@ -173,23 +200,32 @@
             opacity: 0.8;
         }
 
+        .entry p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --- Coursework Grid --- */
         .course-level {
             font-weight: 600;
             color: var(--accent) !important;
             margin-top: 2rem;
-            margin-bottom: 0.5rem !important;
+            margin-bottom: 1rem !important;
+            font-size: 1.15rem;
         }
 
         .course-list {
             list-style-type: none;
             padding-left: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 2rem; 
         }
 
         .course-list li {
             position: relative;
             padding-left: 1.5rem;
-            margin-bottom: 0.6rem;
             color: var(--text-muted);
+            line-height: 1.5;
         }
 
         .course-list li::before {
@@ -199,22 +235,28 @@
             color: var(--text-muted);
         }
 
+        /* --- Profile Image (Circular) --- */
         .image-container {
-            flex: 0 0 350px;
+            flex: 0 0 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 12px;
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--border-color);
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
         .image-container img:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            border-color: var(--accent);
         }
 
         /* --- Footer Styling --- */
@@ -256,34 +298,43 @@
         }
 
         /* --- Mobile Responsiveness --- */
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .navbar ul {
+                margin-left: 0;
+                justify-content: center;
+                gap: 1.2rem;
+            }
+
+            #theme-toggle {
+                margin-left: 0;
+            }
+
             .about-layout.active-tab {
                 flex-direction: column-reverse;
                 text-align: center;
                 margin: 2rem auto;
-                gap: 2.5rem;
+                gap: 3rem;
             }
 
             .content {
                 max-width: 100%;
             }
 
-            .navbar ul {
-                gap: 1.2rem;
-            }
-
-            .theme-toggle-container {
-                margin-left: 0;
-                width: 100%;
-                text-align: center;
-                margin-top: 0.5rem;
-            }
-
-            .image-container {
-                flex: 0 0 100%;
-                max-width: 300px;
+            .image-container img {
+                width: 250px;
+                height: 250px;
             }
             
+            .course-list {
+                grid-template-columns: 1fr;
+            }
+
             .course-list li {
                 text-align: left;
             }
@@ -294,24 +345,23 @@
             }
 
             .footer-separator {
-                display: none; /* Hide the separator on mobile to stack links cleanly */
+                display: none; 
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar (Split Layout) -->
     <nav class="navbar">
+        <div class="nav-brand">Rishi Dadlani</div>
         <ul>
             <li><a href="#" class="tab-link active" onclick="openTab(event, 'about')">About</a></li>
-            <li><a href="#" class="tab-link" onclick="openTab(event, 'research')">Research Experiences</a></li>
-            <li><a href="#" class="tab-link" onclick="openTab(event, 'teaching')">Teaching and Talks</a></li>
+            <li><a href="#" class="tab-link" onclick="openTab(event, 'research')">Research</a></li>
+            <li><a href="#" class="tab-link" onclick="openTab(event, 'teaching')">Teaching</a></li>
             <li><a href="#" class="tab-link" onclick="openTab(event, 'coursework')">Coursework</a></li>
             <li><a href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
-            <!-- Theme Toggle Button -->
-            <li class="theme-toggle-container">
-                <a href="#" id="theme-toggle" onclick="toggleTheme(event)">☀︎</a>
-            </li>
+            <!-- Updated Theme Toggle Button -->
+            <li><a href="#" id="theme-toggle" onclick="toggleTheme(event)">☀︎</a></li>
         </ul>
     </nav>
 
@@ -321,7 +371,6 @@
         <!-- ABOUT TAB -->
         <div id="about" class="tab-content active-tab about-layout">
             <div class="content">
-                <h1>Rishi Dadlani</h1>
                 <p>Hi! My name is Rishi (he/him), and I'm a student at the University of Pennsylvania (2023-2027).</p>
                 <p>I'm currently working toward a bachelor's and accelerated master's degree in mathematics. My primary interests are in geometry/topology, leaning on the analytic side.</p>
                 <p>Outside of math, I also play the flute and lift.</p>
@@ -338,14 +387,14 @@
             <div class="content full-width">
                 <h1>Research Experiences</h1>
                 
-                <div class="entry">
+                <div class="entry card">
                     <h2>University of Michigan REU</h2>
                     <p class="date">Summer 2026</p>
                     <p>Studying exponential directed last passage percolation (DLPP) conditioned under an upper deviation event and with varying initial boundary.</p>
                     <p>Supervised by Prof. Jinho Baik.</p>
                 </div>
 
-                <div class="entry">
+                <div class="entry card">
                     <h2>NSF Center for Analysis and Prediction of Pandemic Expansion (APPEX)</h2>
                     <p class="date">Summer 2025</p>
                     <p>Studied the dynamics of collective action.</p>
@@ -366,7 +415,8 @@
         <div id="coursework" class="tab-content">
             <div class="content full-width">
                 <h1>Selected Coursework</h1>
-                <p class="course-level">Undergraduate Level:</p>
+                
+                <p class="course-level">Undergraduate Level</p>
                 <ul class="course-list">
                     <li>MATH 3140 (Advanced Linear Algebra) with Prof. Angela Gibney</li>
                     <li>MATH 4100 (Complex Analysis) with Prof. Jim Haglund</li>
@@ -376,7 +426,7 @@
                     <li>ESE 3010 (Probability and Statistics) with Prof. Santosh Venkatesh</li>
                 </ul>    
                 
-                <p class="course-level">Master's Level:</p>
+                <p class="course-level">Master's Level</p>
                 <ul class="course-list">
                     <li>MATH 5000 (Point-Set Topology) with Prof. Dennis DeTurck</li>
                     <li>MATH 5010 (Differential Geometry) with Prof. Dennis DeTurck</li>
@@ -384,7 +434,7 @@
                     <li>MATH 5030 (Modules, Fields, Galois Theory) with Prof. Ted Chinburg</li>
                 </ul>
                 
-                <p class="course-level">PhD Level:</p>
+                <p class="course-level">PhD Level</p>
                 <ul class="course-list">
                     <li>MATH 6000 (Smooth Manifolds) with Prof. Herman Gluck</li>
                     <li>MATH 6010 (Algebraic Topology) with Prof. Wolfgang Ziller</li>
@@ -431,10 +481,9 @@
             const body = document.body;
             const themeBtn = document.getElementById('theme-toggle');
             
-            // Toggle the light-mode class
             body.classList.toggle('light-mode');
             
-            // Update button text and save preference
+            // Updated to swap between the specific emojis
             if (body.classList.contains('light-mode')) {
                 themeBtn.textContent = '⏾';
                 localStorage.setItem('theme', 'light');
