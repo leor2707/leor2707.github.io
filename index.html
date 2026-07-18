@@ -310,7 +310,7 @@
             <li><a href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
             <!-- Theme Toggle Button -->
             <li class="theme-toggle-container">
-                <a href="#" id="theme-toggle" onclick="toggleTheme(event)">☀️ Light Mode</a>
+                <a href="#" id="theme-toggle" onclick="toggleTheme(event)">☀︎</a>
             </li>
         </ul>
     </nav>
@@ -436,10 +436,10 @@
             
             // Update button text and save preference
             if (body.classList.contains('light-mode')) {
-                themeBtn.textContent = '🌙 Dark Mode';
+                themeBtn.textContent = '⏾';
                 localStorage.setItem('theme', 'light');
             } else {
-                themeBtn.textContent = '☀️ Light Mode';
+                themeBtn.textContent = '☀︎';
                 localStorage.setItem('theme', 'dark');
             }
         }
@@ -451,7 +451,7 @@
             
             if (savedTheme === 'light') {
                 document.body.classList.add('light-mode');
-                themeBtn.textContent = '🌙 Dark Mode';
+                themeBtn.textContent = '⏾';
             }
         };
     </script>
